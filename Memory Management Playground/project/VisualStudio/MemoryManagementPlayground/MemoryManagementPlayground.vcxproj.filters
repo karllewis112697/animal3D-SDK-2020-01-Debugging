@@ -33,6 +33,9 @@
     <ClInclude Include="..\..\..\include\mmp\mmp_types.h">
       <Filter>Header Files\mmp</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\mmp\cPointer.h">
+      <Filter>Header Files\mmp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\MemoryManagementPlayground\mmp\mmp_file.c">
@@ -41,12 +44,18 @@
     <ClCompile Include="..\..\..\source\MemoryManagementPlayground\mmp\mmp_memory.c">
       <Filter>Source Files\mmp</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\MemoryManagementPlayground\mmp\cPointer.cpp">
+      <Filter>Source Files\mmp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\mmp\_inl\mmp_file.inl">
       <Filter>Header Files\mmp\_inl</Filter>
     </None>
     <None Include="..\..\..\include\mmp\_inl\mmp_memory.inl">
+      <Filter>Header Files\mmp\_inl</Filter>
+    </None>
+    <None Include="..\..\..\include\mmp\_inl\cPointer.inl">
       <Filter>Header Files\mmp\_inl</Filter>
     </None>
   </ItemGroup>
