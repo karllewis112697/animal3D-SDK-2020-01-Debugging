@@ -1,6 +1,21 @@
 #ifndef _CPOINTER_H_
 #define _CPOINTER_H_
 
+template <bool, typename t = void>
+struct TYPEDEF {};
+template <typename t>
+struct TYPEDEF<true, t> { typedef t TYPE; };
+
+#define TYPE(T)			TYPEDEF<T != void>::TYPE
+#define NONVOID (T)		template <typename t = TYPE (T)>
+
+template <typename T>
+class cNonVoidTest
+{
+public: 
+	NONVOID(T) t someFunc(int value) {}
+};
+
 
 struct blah
 {
@@ -35,34 +50,26 @@ public:
 		return data;
 	}
 
-	// new/delete
-	void* operator new (size_t sz)
-	{
-		return ::operator new (sz);
-	}
-
-	void operator delete (void* ptr)
-	{
-		::operator delete (ptr);
-	}
-
-	// placement new
-	void* operator new( size_t sz, void* buffer)
-	{
-		//return ::operator new(sz);
-		return buffer;
-	}
-	// placement delete
-	void operator delete (void* buffer, void* ptr)
-	{
-
-	}
 };
 
 class cPointer
 {
 
 };
+
+// new/delete
+void* operator new (size_t sz);
+void* operator new[] (size_t sz);
+void operator delete (void* ptr);
+void operator delete[] (void* ptr);
+// placement new
+void* operator new(size_t sz, void* buffer);
+// placement new array
+void* operator new[](size_t sz, void* buffer);
+// placement delete
+void operator delete (void* buffer, void* ptr);
+// placement delete array
+void operator delete[] (void* buffer, void* ptr);
 
 #include "mmp/_inl/cPointer.inl"
 #endif //!_CPOINTER_H

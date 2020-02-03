@@ -78,3 +78,46 @@ cDummy& cDummy::operator=(cDummy&& rhs)
 
 	return *this;
 }
+
+// new/delete
+void* operator new (size_t sz)
+{
+	return ::operator new (sz);
+}
+
+void operator delete (void* ptr)
+{
+	::operator delete (ptr);
+}
+
+// placement new
+void* operator new(size_t sz, void* buffer)
+{
+	//return ::operator new(sz);
+	return buffer;
+}
+// placement delete
+void operator delete (void* buffer, void* ptr)
+{
+
+}
+// array new and delete
+void* operator new[](size_t sz)
+{
+
+}
+
+void operator delete[](void* ptr)
+{
+
+}
+
+void* operator new[](size_t sz, void* buffer)
+{
+
+}
+
+void operator delete[](void* buffer, void* ptr)
+{
+
+}
