@@ -150,18 +150,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\include\mmp\cPointer.h" />
+    <ClInclude Include="..\..\..\include\mmp\cPointer.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\..\include\mmp\mmp_file.h" />
     <ClInclude Include="..\..\..\include\mmp\mmp_memory.h" />
     <ClInclude Include="..\..\..\include\mmp\mmp_types.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\source\MemoryManagementPlayground\mmp\cPointer.cpp" />
+    <ClCompile Include="..\..\..\source\MemoryManagementPlayground\mmp\cPointer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\source\MemoryManagementPlayground\mmp\mmp_file.c" />
     <ClCompile Include="..\..\..\source\MemoryManagementPlayground\mmp\mmp_memory.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\include\mmp\_inl\cPointer.inl" />
+    <None Include="..\..\..\include\mmp\_inl\cPointer.inl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </None>
     <None Include="..\..\..\include\mmp\_inl\mmp_file.inl" />
     <None Include="..\..\..\include\mmp\_inl\mmp_memory.inl" />
   </ItemGroup>
