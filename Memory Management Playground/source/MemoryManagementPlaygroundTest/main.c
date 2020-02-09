@@ -101,13 +101,15 @@ int testMalloc(decl_argc, decl_argv)
 	malloctest* test4096 = malloc(4096);
 
 	
-	free(test1024);
+	*test1024->pdata = malloc(sizeof(int));
 
-	test1024 = malloc(8192);
-
+	int* intTest = malloc(sizeof (int));
+	
+	free (intTest);
+	free(*test1024->pdata);
 	free(test4096);
-	free(test1024);
 	free(test2048);
+	free(test1024);
 
 	// done
 	return 0;
