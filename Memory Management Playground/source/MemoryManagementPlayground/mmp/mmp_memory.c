@@ -10,8 +10,19 @@ Copyright 2019-2020
 #include "mmp/mmp_file.h"
 
 
+
 //-----------------------------------------------------------------------------
-// typedef struct...
+// Memory block struct. Stores data about memory blocks for malloc to use
+struct memBlock 
+{
+	// Used to track if this memory block is free for malloc to use; 1 if free, otherwise 0; 
+	i8 free;
+	// The size of this block. Equal to the passed in size from the malloc call
+	size size;
+	// Pointer to the next block of memory for malloc to use once this block is allocated
+	struct memBlock* next;
+}; 
+typedef struct memBlock memBlock;
 
 
 //-----------------------------------------------------------------------------
@@ -169,7 +180,22 @@ addr mmp_pool_init(addr const block_base, size const block_base_size, size const
 {
 	if (block_base && block_base_size && pool_size_bytes)
 	{
+		// create a pool of memory to read through and 
+		// point it to our stack allocated data which represents beginning of memory
+		// setting it to a void pointer so it works with any data
+		struct memBlock* memoryPool = (void*)pool_size_bytes;
 
+		// initialize the size of the pool to the provided base size
+		
+		memoryPool->size = block_base_size;
+
+		// initalize the first entry in the pool to free so it can be allocated to with malloc
+		memoryPool->free = 1;
+
+		// set the next block in the pool to equal the block base since we're at the start still
+		memoryPool->next = block_base;
+
+		return memoryPool;
 	}
 	return 0;
 }
@@ -179,7 +205,7 @@ size mmp_pool_term(addr const pool)
 {
 	if (pool)
 	{
-
+	
 	}
 	return 0;
 }
@@ -192,7 +218,37 @@ addr mmp_block_reserve(addr const pool, size const block_size_bytes)
 {
 	if (pool && block_size_bytes)
 	{
+		// memory block pointers used to go through pool 
+		struct memBlock* current;
+		struct memBlock* previous;
 
+		// initialize our current pointer to the start of the pool
+		current = pool;
+		current->size = block_size_bytes;
+
+		// checks if checked pool can have something allocated from it and checks ecah block at a time
+		while ((((current->size) < block_size_bytes) && ((current->free) == 0)) && (current->next != NULL))
+		{
+			// set previous to the current element in the pool
+			previous = current;
+			// set current to its next pointer
+			current = current->next;
+		
+		}
+		// checks if a checked pool fits the specified reserve size and allocates it
+		if ((current->size == block_size_bytes))
+		{
+			// Our current block is no longer free and has been allocated
+			current->free = 0;
+			printf("We have a new block allocated with size %I64u\n ", current->size);
+			return current;
+		}
+		else
+		{
+
+			return 0;
+
+		}
 	}
 	return 0;
 }
@@ -202,7 +258,14 @@ size mmp_block_release(addr const block, addr const pool)
 {
 	if (block && pool)
 	{
+		// current block to copy our passed in block to
+		struct memBlock* current = block;
 
+		// set the block to be free again so it can be used again 
+		current->free = 1;
+
+		printf("Memory at pool %p with size %I64u freed back into pool\n ", pool, current->size);
+		
 	}
 	return 0;
 }

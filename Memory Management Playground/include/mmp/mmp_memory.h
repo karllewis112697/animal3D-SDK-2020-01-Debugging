@@ -11,6 +11,8 @@ Copyright 2019-2020
 
 #include "mmp_file.h"
 
+#include<stdio.h>
+#include<stddef.h>
 
 #ifdef __cplusplus
 extern "C"

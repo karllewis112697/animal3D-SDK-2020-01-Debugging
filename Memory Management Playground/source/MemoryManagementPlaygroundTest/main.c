@@ -32,8 +32,8 @@ int testMalloc(decl_argc, decl_argv);
 
 int main(decl_argc, decl_argv)
 {
-	//return testMMP(argc, argv);
-	return testMalloc(argc, argv);
+	return testMMP(argc, argv);
+	//return testMalloc(argc, argv);
 }
 
 
@@ -42,14 +42,47 @@ int main(decl_argc, decl_argv)
 int testMMP(decl_argc, decl_argv)
 {
 	// stack-allocate a bunch of data
-	// NOTES: Call pool init on this chunk
 	chunk_kb chunk[12];
 	size count = sizeof(chunk);
 	ptr chunk_base = mmp_set_zero(chunk, count);
 
+	// holds pointer to the pool once its been initalized
+	addr* memPool;
+
+	// holds pointer to an allocated block
+	addr* memBlock;
+
+	addr* memBlock2;
+
+	/* call init, using chunk base as the start of the list
+	 chunk base is the start of our memory address list
+	 count is how big the start of memory address is
+	 chunk is our pool size since its a larger amount of data and we want a pool of mem blocks from it
+	*/
+	memPool = mmp_pool_init(chunk_base, (size)count, (size)chunk);
+
+	// call reserve, or our version of malloc using our chunk pool
+	memBlock = mmp_block_reserve(memPool, (size)count);
+
+	// call reserve, or our version of malloc using our chunk pool
+	memBlock2 = mmp_block_reserve(memPool, (size)count *2);
+
+	// call release to free our block after we're finished with it
+	mmp_block_release(memBlock, memPool);
+
+	// call release to free our block after we're finished with it
+	mmp_block_release(memBlock2, memPool);
+
+	// call reserve, or our version of malloc using our chunk pool
+	memBlock = mmp_block_reserve(memPool, (size)count);
+
+	// call term at the end, freeing up our pool after we're done with it
+	mmp_pool_term(chunk_base);
 
 
 	// done, stack-allocated data popped
+	printf("\nPress enter to continue....\n");
+	getchar();
 	return 0;
 }
 
@@ -58,7 +91,7 @@ int testMMP(decl_argc, decl_argv)
 
 #include <stdlib.h>
 
-
+// used for discovering how malloc and free work
 int testMalloc(decl_argc, decl_argv)
 {
 	/*
