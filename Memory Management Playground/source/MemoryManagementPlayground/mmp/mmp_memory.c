@@ -12,6 +12,9 @@ Copyright 2019-2020
 
 
 //-----------------------------------------------------------------------------
+
+// NEW
+
 // Memory block struct. Stores data about memory blocks for malloc to use
 struct memBlock 
 {
@@ -175,7 +178,7 @@ size mmp_compare(kaddr const block_0, kaddr const block_1, size const size_bytes
 
 //-----------------------------------------------------------------------------
 // pool utilities
-
+// NEW IMPLEMENTATION
 addr mmp_pool_init(addr const block_base, size const block_base_size, size const pool_size_bytes)
 {
 	if (block_base && block_base_size && pool_size_bytes)
@@ -213,7 +216,7 @@ size mmp_pool_term(addr const pool)
 
 //-----------------------------------------------------------------------------
 // block utilities
-
+// NEW IMPLEMENTATION
 addr mmp_block_reserve(addr const pool, size const block_size_bytes)
 {
 	if (pool && block_size_bytes)
@@ -253,7 +256,7 @@ addr mmp_block_reserve(addr const pool, size const block_size_bytes)
 	return 0;
 }
 
-
+// NEW IMPLEMENTATION
 size mmp_block_release(addr const block, addr const pool)
 {
 	if (block && pool)

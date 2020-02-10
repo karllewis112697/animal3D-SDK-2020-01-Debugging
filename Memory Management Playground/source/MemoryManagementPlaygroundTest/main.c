@@ -41,18 +41,22 @@ int main(decl_argc, decl_argv)
 
 int testMMP(decl_argc, decl_argv)
 {
+
 	// stack-allocate a bunch of data
 	chunk_kb chunk[12];
 	size count = sizeof(chunk);
 	ptr chunk_base = mmp_set_zero(chunk, count);
 
+	// -----------------------------------NEW-------------------------------------//
+
 	// holds pointer to the pool once its been initalized
 	addr* memPool;
 
-	// holds pointer to an allocated block
+	// holds pointers to an allocated block
 	addr* memBlock;
-
 	addr* memBlock2;
+
+
 
 	/* call init, using chunk base as the start of the list
 	 chunk base is the start of our memory address list
