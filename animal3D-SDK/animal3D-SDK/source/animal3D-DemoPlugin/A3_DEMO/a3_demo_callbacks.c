@@ -190,6 +190,7 @@ A3DYLIBSYMBOL a3_DemoState *a3demoCB_load(a3_DemoState *demoState, a3boolean hot
 	// HEAP allocate persistent state
 	else if (demoState = (a3_DemoState*)malloc(stateSize))
 	{
+		// 
 		// good idea to set the whole block of memory to zero
 		memset(demoState, 0, stateSize);
 

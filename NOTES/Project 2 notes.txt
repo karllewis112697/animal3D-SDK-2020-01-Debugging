@@ -26,4 +26,10 @@ Error 8:
 Error 9:
 - a3DemoState_loading line 437
 	- a3DemoState_loading line 210
+Error 10: 
+-a3_DemoState_loading line 164
+
+Bug 1 Note:
+- Callbacks line 195; change memset from 0 to -1, then initalize text continues to run without breaking
+- Since the block is set to 0, its all set to used, so it can't be accessed  Update: Dan said NO :(
 
