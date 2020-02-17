@@ -56,7 +56,7 @@ inline a3ui32 a3demo_getPersistentStateSize()
 // consistent text initialization
 inline void a3demo_initializeText(a3_TextRenderer *text)
 {
-	 //a3textInitialize(text, 18, 1, 0, 0, 0);
+	 a3textInitialize(text, 18, 1, 0, 0, 0);
 }
 
 
