@@ -1,7 +1,7 @@
 Error Exception locations:
 Error 1:
 - Callbacks line 60
-	- a3_TextRender.c not found
+	- A heap has been corrupted
 Error 2:
 - ntdll.pdb not loaded
 	- Found by commenting out callbacks line 60
@@ -29,7 +29,9 @@ Error 9:
 Error 10: 
 -a3_DemoState_loading line 164
 
-Bug 1 Note:
-- Callbacks line 195; change memset from 0 to -1, then initalize text continues to run without breaking
-- Since the block is set to 0, its all set to used, so it can't be accessed  Update: Dan said NO :(
+Error 11:
+- Callbacks line 203
+	- cos out write access violation
 
+Notes:
+- moving text above timer set in callbacks line 207 lets the text go through. It is not the text

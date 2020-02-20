@@ -57,6 +57,7 @@ inline a3ui32 a3demo_getPersistentStateSize()
 inline void a3demo_initializeText(a3_TextRenderer *text)
 {
 	 a3textInitialize(text, 18, 1, 0, 0, 0);
+
 }
 
 
@@ -196,11 +197,12 @@ A3DYLIBSYMBOL a3_DemoState *a3demoCB_load(a3_DemoState *demoState, a3boolean hot
 
 		// set up trig table (A3DM)
 		a3trigInit(8, demoState->trigTable);
-
+/* ITS SOMETHING HERE WHAT */
 		// initialize state variables
 		// e.g. timer, thread, etc.
 		a3timerSet(demoState->renderTimer, 30.0);
 		a3timerStart(demoState->renderTimer);
+
 
 		// TODO: Look at the text pointer
 		// text 
