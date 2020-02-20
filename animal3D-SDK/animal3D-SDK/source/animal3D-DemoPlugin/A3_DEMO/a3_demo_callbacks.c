@@ -196,15 +196,15 @@ A3DYLIBSYMBOL a3_DemoState *a3demoCB_load(a3_DemoState *demoState, a3boolean hot
 		memset(demoState, 0, stateSize);
 
 		// set up trig table (A3DM)
-		a3trigInit(8, demoState->trigTable);
-/* ITS SOMETHING HERE WHAT */
+		a3trigInit(4, demoState->trigTable);
+
 		// initialize state variables
 		// e.g. timer, thread, etc.
 		a3timerSet(demoState->renderTimer, 30.0);
 		a3timerStart(demoState->renderTimer);
 
 
-		// TODO: Look at the text pointer
+		// TODO: Look into these four lines
 		// text 
 		a3demo_initializeText(demoState->text);
 		demoState->textInit = 1;

@@ -35,3 +35,4 @@ Error 11:
 
 Notes:
 - moving text above timer set in callbacks line 207 lets the text go through. It is not the text
+- ITS THE TRIG INIT!
