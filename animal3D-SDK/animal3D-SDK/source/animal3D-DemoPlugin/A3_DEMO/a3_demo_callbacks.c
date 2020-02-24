@@ -195,8 +195,9 @@ A3DYLIBSYMBOL a3_DemoState *a3demoCB_load(a3_DemoState *demoState, a3boolean hot
 		// good idea to set the whole block of memory to zero
 		memset(demoState, 0, stateSize);
 
+		
 		// set up trig table (A3DM)
-		a3trigInit(4, demoState->trigTable);
+		a3index trig = a3trigInit(4, demoState->trigTable);
 
 		// initialize state variables
 		// e.g. timer, thread, etc.
