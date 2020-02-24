@@ -90,10 +90,12 @@ void a3demo_initScene(a3_DemoState *demoState)
 	if (demoState->verticalAxis)
 	{
 		// vertical axis is Y
+		demoState->verticalAxis = 0;
 	}
 	else
 	{
 		// vertical axis is Z
+		demoState->verticalAxis = 1;
 	}
 
 

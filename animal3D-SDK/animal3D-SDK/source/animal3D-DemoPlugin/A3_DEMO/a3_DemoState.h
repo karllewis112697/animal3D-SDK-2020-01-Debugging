@@ -101,6 +101,7 @@ extern "C"
 
 		// global vertical axis: Z = 0, Y = 1
 		a3i32 verticalAxis;
+		
 
 		// asset streaming between loads enabled (careful!)
 		a3i32 streaming;
