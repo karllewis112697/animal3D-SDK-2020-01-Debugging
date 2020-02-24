@@ -42,4 +42,5 @@ Bug 2:
 A3 ERROR: Drawable creation failed; vertex array and geometry data formats do not match
 1. Breakpoint on callbacks line 228
 2. Breakpoint on line 298 of loading
-3. Line 303 is where the A3 error is called
+3. Line 303 is where the A3 error is called. Its something with the teapot
+4. 
