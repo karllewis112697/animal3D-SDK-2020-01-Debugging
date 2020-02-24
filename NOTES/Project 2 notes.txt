@@ -36,3 +36,10 @@ Error 11:
 Notes:
 - moving text above timer set in callbacks line 207 lets the text go through. It is not the text
 - ITS THE TRIG INIT!
+
+
+Bug 2:
+A3 ERROR: Drawable creation failed; vertex array and geometry data formats do not match
+1. Breakpoint on callbacks line 228
+2. Breakpoint on line 298 of loading
+3. Line 303 is where the A3 error is called
