@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\_general">
+      <UniqueIdentifier>{476270a3-e5c2-4220-9892-457e7fece84c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GPRO-FW">
+      <UniqueIdentifier>{61b6f9ae-90b4-48c1-8ea4-681412f31abf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GPRO-FW">
+      <UniqueIdentifier>{182a4c78-3f26-4aec-9cc0-29c5ee71abd0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\source\GPRO-FW\GPRO-FW.c">
+      <Filter>Source Files\GPRO-FW</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\GPRO-FW\GPRO-FW.h">
+      <Filter>Header Files\GPRO-FW</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\_general\_platform.h">
+      <Filter>Header Files\_general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\_general\_typedefs.h">
+      <Filter>Header Files\_general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\_general\_macros.h">
+      <Filter>Header Files\_general</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
