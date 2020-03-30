@@ -150,6 +150,17 @@ void a3demo_initScene(a3_DemoState *demoState)
 		demoState->cylinderObject->position.y = +6.0f;
 		demoState->teapotObject->position.y = -6.0f;
 	}
+
+
+	// animation
+	demoState->segmentDuration = 4.0f;
+	demoState->segmentDurationInv = a3recip(demoState->segmentDuration);
+	demoState->segmentIndex = 0;
+	demoState->segmentCount = sizeof(demoState->waypoint) / sizeof(*demoState->waypoint);
+	demoState->waypoint[0] = demoState->sphereObject->position;
+	demoState->waypoint[1] = demoState->cylinderObject->position;
+	demoState->waypoint[2] = demoState->torusObject->position;
+	demoState->waypoint[3] = demoState->teapotObject->position;
 }
 
 

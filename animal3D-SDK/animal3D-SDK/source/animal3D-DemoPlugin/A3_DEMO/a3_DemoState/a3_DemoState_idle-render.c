@@ -302,7 +302,7 @@ void a3demo_render_main(const a3_DemoState *demoState,
 		a3shaderProgramActivate(currentDemoProgram->program);
 		a3real4x4Product(modelViewProjectionMat.m, camera->viewProjectionMat.m, currentSceneObject->modelMat.m);
 		a3shaderUniformSendFloatMat(a3unif_mat4, 0, currentDemoProgram->uMVP, 1, modelViewProjectionMat.mm);
-		a3shaderUniformSendFloat(a3unif_vec4, currentDemoProgram->uColor, 1, skyblue);
+		a3shaderUniformSendFloat(a3unif_vec4, currentDemoProgram->uColor, 1, grey);
 
 		// change depth mode to 'always' to ensure box gets drawn and resets depth
 		// draw inverted box
@@ -352,7 +352,7 @@ void a3demo_render_main(const a3_DemoState *demoState,
 			//	- light data
 			//	- activate shared textures including atlases if using
 			//	- shared animation data
-			a3shaderUniformSendFloat(a3unif_vec4, currentDemoProgram->uColor, 1, skyblue);
+			a3shaderUniformSendFloat(a3unif_vec4, currentDemoProgram->uColor, 1, grey);
 			a3shaderUniformSendDouble(a3unif_single, currentDemoProgram->uTime, 1, &demoState->renderTimer->totalTime);
 
 			// individual object requirements: 
@@ -368,7 +368,7 @@ void a3demo_render_main(const a3_DemoState *demoState,
 				// send data
 				a3real4x4Product(modelViewProjectionMat.m, camera->viewProjectionMat.m, currentSceneObject->modelMat.m);
 				a3shaderUniformSendFloatMat(a3unif_mat4, 0, currentDemoProgram->uMVP, 1, modelViewProjectionMat.mm);
-				a3shaderUniformSendFloat(a3unif_vec4, currentDemoProgram->uColor, 1, rgba4[k].v);
+				a3shaderUniformSendFloat(a3unif_vec4, currentDemoProgram->uColor, 1, rgba4[k + 3].v);
 
 				// draw
 				currentDrawable = drawable[k];
