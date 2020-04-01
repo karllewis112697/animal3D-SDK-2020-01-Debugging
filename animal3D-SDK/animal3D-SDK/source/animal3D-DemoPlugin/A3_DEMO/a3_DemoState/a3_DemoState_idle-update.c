@@ -110,6 +110,8 @@ void a3demo_update_main(a3_DemoState *demoState, a3f64 dt)
 	a3_DemoSceneObject *cameraObject = camera->sceneObject;
 	a3_DemoSceneObject *currentSceneObject;
 
+	a3ui32 segmentIndex[4];
+
 
 	// do simple animation
 	if (useVerticalY)
@@ -132,11 +134,42 @@ void a3demo_update_main(a3_DemoState *demoState, a3f64 dt)
 	}
 
 
+	// animation
+	demoState->segmentTime += (a3real)dt * (a3real)demoState->updateAnimation;
+	if (demoState->segmentTime >= demoState->segmentDuration)
+	{
+		demoState->segmentTime -= demoState->segmentDuration;
+		demoState->segmentIndex = (demoState->segmentIndex + 1) % demoState->segmentCount;
+	}
+	demoState->segmentParam = demoState->segmentTime * demoState->segmentDurationInv;
+
+	segmentIndex[0] = (demoState->segmentIndex + 0) % demoState->segmentCount;
+	segmentIndex[1] = (demoState->segmentIndex + 1) % demoState->segmentCount;
+	segmentIndex[2] = (demoState->segmentIndex + 2) % demoState->segmentCount;
+	segmentIndex[3] = (demoState->segmentIndex + 3) % demoState->segmentCount;
+	a3real3MulS(a3real3NLerp(demoState->sphereObject->position.v,
+		demoState->waypoint[segmentIndex[0]].v,
+		demoState->waypoint[segmentIndex[1]].v,
+		demoState->segmentParam), (a3real)8);
+	a3real3MulS(a3real3NLerp(demoState->cylinderObject->position.v,
+		demoState->waypoint[segmentIndex[1]].v,
+		demoState->waypoint[segmentIndex[2]].v,
+		demoState->segmentParam), (a3real)8);
+	a3real3MulS(a3real3NLerp(demoState->torusObject->position.v,
+		demoState->waypoint[segmentIndex[2]].v,
+		demoState->waypoint[segmentIndex[3]].v,
+		demoState->segmentParam), (a3real)8);
+	a3real3MulS(a3real3NLerp(demoState->teapotObject->position.v,
+		demoState->waypoint[segmentIndex[3]].v,
+		demoState->waypoint[segmentIndex[0]].v,
+		demoState->segmentParam), (a3real)8);
+
+
 	// update scene objects
 	for (i = 0; i < demoStateMaxCount_sceneObject; ++i)
 		a3demo_updateSceneObject(demoState->sceneObject + i, 0);
 	for (i = 0; i < demoStateMaxCount_cameraObject; ++i)
-		a3demo_updateSceneObject(demoState->cameraObject + i, 0);
+		a3demo_updateSceneObject(demoState->cameraObject + i, 1);
 
 	// update cameras/projectors
 	for (i = 0; i < demoStateMaxCount_projector; ++i)

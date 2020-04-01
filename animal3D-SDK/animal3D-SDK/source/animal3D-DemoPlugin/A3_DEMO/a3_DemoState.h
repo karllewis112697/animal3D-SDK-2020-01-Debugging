@@ -69,8 +69,8 @@ extern "C"
 		demoStateMaxCount_timer = 1,
 		demoStateMaxCount_drawDataBuffer = 1,
 		demoStateMaxCount_vertexArray = 4,
-		demoStateMaxCount_drawable = 8,
-		demoStateMaxCount_shaderProgram = 1,
+		demoStateMaxCount_drawable = 16,
+		demoStateMaxCount_shaderProgram = 8,
 	};
 
 	// additional counters for demo modes
@@ -126,7 +126,7 @@ extern "C"
 		a3_XboxControllerInput xcontrol[4];
 
 		// pointer to fast trig table
-		a3f32 trigTable[4096];
+		a3f32 trigTable[4096 * 4];
 
 
 		//---------------------------------------------------------------------
@@ -150,6 +150,13 @@ extern "C"
 
 		// cameras
 		a3ui32 activeCamera;
+
+		// animation
+		a3vec3 waypoint[4];
+		a3ui32 segmentCount;
+		a3ui32 segmentIndex;
+		a3real segmentDuration, segmentDurationInv;
+		a3real segmentTime, segmentParam;
 
 
 		//---------------------------------------------------------------------

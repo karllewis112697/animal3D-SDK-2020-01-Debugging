@@ -194,7 +194,7 @@ A3DYLIBSYMBOL a3_DemoState *a3demoCB_load(a3_DemoState *demoState, a3boolean hot
 		memset(demoState, 0, stateSize);
 
 		// set up trig table (A3DM)
-		a3trigInit(8, demoState->trigTable);
+		a3trigInit(4, demoState->trigTable);
 
 		// initialize state variables
 		// e.g. timer, thread, etc.
@@ -209,7 +209,7 @@ A3DYLIBSYMBOL a3_DemoState *a3demoCB_load(a3_DemoState *demoState, a3boolean hot
 
 
 		// enable asset streaming between loads
-		demoState->streaming = 1;
+		demoState->streaming = 0;
 
 
 		// create directory for data
@@ -294,6 +294,7 @@ A3DYLIBSYMBOL a3i32 a3demoCB_idle(a3_DemoState *demoState)
 			a3XboxControlUpdate(demoState->xcontrol);
 
 			// render occurred this idle: return +1
+			return +1;
 		}
 
 		// nothing happened this idle: return 0
