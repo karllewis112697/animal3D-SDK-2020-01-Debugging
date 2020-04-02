@@ -132,10 +132,14 @@ void a3demo_render(const a3_DemoState* demoState);
 // loading
 void a3demo_loadGeometry(a3_DemoState* demoState);
 void a3demo_loadShaders(a3_DemoState* demoState);
+void a3demo_loadTextures(a3_DemoState* demoState);
+void a3demo_loadFramebuffers(a3_DemoState* demoState);
 
 // unloading
 void a3demo_unloadGeometry(a3_DemoState* demoState);
 void a3demo_unloadShaders(a3_DemoState* demoState);
+void a3demo_unloadTextures(a3_DemoState* demoState);
+void a3demo_unloadFramebuffers(a3_DemoState* demoState);
 
 // other utils & setup
 void a3demo_setDefaultGraphicsState();
@@ -225,6 +229,9 @@ A3DYLIBSYMBOL a3_DemoState *a3demoCB_load(a3_DemoState *demoState, a3boolean hot
 		// shaders
 		a3demo_loadShaders(demoState);
 
+		// textures
+		a3demo_loadTextures(demoState);
+
 		// scene objects
 		a3demo_initScene(demoState);
 	}
@@ -253,6 +260,8 @@ A3DYLIBSYMBOL a3_DemoState *a3demoCB_unload(a3_DemoState *demoState, a3boolean h
 		// free graphics objects
 		a3demo_unloadGeometry(demoState);
 		a3demo_unloadShaders(demoState);
+		a3demo_unloadTextures(demoState);
+		a3demo_unloadFramebuffers(demoState);
 		
 		// erase other stuff
 		a3trigFree();
@@ -357,7 +366,8 @@ A3DYLIBSYMBOL void a3demoCB_windowResize(a3_DemoState *demoState, a3i32 newWindo
 
 	// framebuffers should be initialized or re-initialized here 
 	//	since they are likely dependent on the window size
-
+	a3demo_unloadFramebuffers(demoState);
+	a3demo_loadFramebuffers(demoState);
 
 	// use framebuffer deactivate utility to set viewport
 	a3framebufferDeactivateSetViewport(a3fbo_depthDisable, -frameBorder, -frameBorder, demoState->frameWidth, demoState->frameHeight);
