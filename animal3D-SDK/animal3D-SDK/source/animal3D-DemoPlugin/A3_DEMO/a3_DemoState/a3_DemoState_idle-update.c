@@ -109,6 +109,7 @@ void a3demo_update_main(a3_DemoState *demoState, a3f64 dt)
 	a3_DemoCamera *camera = demoState->camera + demoState->activeCamera;
 	a3_DemoSceneObject *cameraObject = camera->sceneObject;
 	a3_DemoSceneObject *currentSceneObject;
+	a3_DemoPointLight *pointLight;
 
 	a3ui32 segmentIndex[4];
 
@@ -170,6 +171,8 @@ void a3demo_update_main(a3_DemoState *demoState, a3f64 dt)
 		a3demo_updateSceneObject(demoState->sceneObject + i, 0);
 	for (i = 0; i < demoStateMaxCount_cameraObject; ++i)
 		a3demo_updateSceneObject(demoState->cameraObject + i, 1);
+	for (i = 0; i < demoStateMaxCount_lightObject; ++i)
+		a3demo_updateSceneObject(demoState->lightObject + i, 1);
 
 	// update cameras/projectors
 	for (i = 0; i < demoStateMaxCount_projector; ++i)
@@ -192,6 +195,24 @@ void a3demo_update_main(a3_DemoState *demoState, a3f64 dt)
 		demoState->gridColor.g = 0.25f;
 	else
 		demoState->gridColor.b = 0.25f;
+
+
+	// update lights
+	pointLight = demoState->forwardPointLight;
+	pointLight->worldPos.xyz = demoState->mainLightObject->position;
+
+	// update lights view positions for current camera
+	for (i = 0, pointLight = demoState->forwardPointLight + i;
+		i < demoState->forwardLightCount;
+		++i, ++pointLight)
+	{
+		// convert to view space and retrieve view position
+		a3real4Real4x4Product(pointLight->viewPos.v, cameraObject->modelMatInv.m, pointLight->worldPos.v);
+	}
+
+	// send point light data
+	pointLight = demoState->forwardPointLight;
+	a3bufferRefill(demoState->ubo_pointlight, 0, demoState->forwardLightCount * sizeof(a3_DemoPointLight), pointLight);
 
 
 	// correct rotations as needed
